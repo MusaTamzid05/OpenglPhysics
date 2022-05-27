@@ -44,6 +44,8 @@ set(SOURCE_FILES
     src/rendererGL/cube.cpp
     src/rendererGL/mesh.cpp
     src/rendererGL/shader.cpp
+    src/rendererGL/time.cpp
+    src/rendererGL/camera.cpp
     )
 
 add_executable(gl_play  ${SOURCE_FILES})

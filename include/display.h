@@ -4,6 +4,9 @@
 #include <string>
 #include <vector>
 
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
+
 
 struct GLFWwindow;
 
@@ -47,8 +50,9 @@ namespace Engine {
             int height;
 
             GLFWwindow* m_window;
-
             std::vector<RendererGL::Shape*> shapes;
+
+
     };
 
 };

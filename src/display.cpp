@@ -1,13 +1,15 @@
 #include "display.h"
 #include <iostream>
 
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
 
 
 #include <iostream>
 
 #include "rendererGL/cube.h"
+#include "rendererGL/time.h"
+#include "rendererGL/camera.h"
+#include <glm/gtc/matrix_transform.hpp>
+
 
 namespace Engine {
 
@@ -15,6 +17,9 @@ namespace Engine {
     Display::Display(const std::string& title,
             int width,
             int height):width(width), height(height) {
+
+
+        RendererGL::Camera::initialize(Vector3(0.0f, 0.0f, 3.0f), width, height);
 
         if(!init(title)) {
             std::cerr << "Could not intialize display.\n";
@@ -24,7 +29,7 @@ namespace Engine {
         std::cout << "Display initialize.\n";
 
         shapes.push_back(new RendererGL::Cube());
-
+        std::cout.precision(10);
     }
 
     Display::~Display() {
@@ -78,6 +83,7 @@ namespace Engine {
 
     void Display::update() {
 
+        RendererGL::Time::get_instance()->update();
         for(RendererGL::Shape* shape : shapes)
             shape->update();
 
@@ -89,6 +95,17 @@ namespace Engine {
         if(glfwGetKey(m_window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
             glfwSetWindowShouldClose(m_window, true);
 
+	  if (glfwGetKey(m_window, GLFW_KEY_W) == GLFW_PRESS)
+			RendererGL::Camera::get_instance()->process_keyboard(RendererGL::CameraMovement::FORWARD);
+
+		if (glfwGetKey(m_window, GLFW_KEY_S) == GLFW_PRESS)
+			RendererGL::Camera::get_instance()->process_keyboard(RendererGL::CameraMovement::BACKWARD);
+
+		if (glfwGetKey(m_window, GLFW_KEY_A) == GLFW_PRESS)
+			RendererGL::Camera::get_instance()->process_keyboard(RendererGL::CameraMovement::LEFT);
+
+		if (glfwGetKey(m_window, GLFW_KEY_D) == GLFW_PRESS)
+			RendererGL::Camera::get_instance()->process_keyboard(RendererGL::CameraMovement::RIGHT);
 
     }
 
