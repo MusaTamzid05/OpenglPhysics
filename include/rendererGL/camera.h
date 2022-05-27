@@ -13,6 +13,13 @@ namespace RendererGL {
     };
 
     class Camera {
+
+        // far = - x
+        // close = +x
+        // up  = +y
+        // down = -y
+        // left = +z
+        // right = -z
         public:
             virtual ~Camera() {}
             glm::mat4 projection;
