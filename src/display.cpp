@@ -6,9 +6,8 @@
 
 
 #include <iostream>
-#include "shape.h"
 
-#include "triangle.h"
+#include "rendererGL/cube.h"
 
 namespace Engine {
 
@@ -23,14 +22,14 @@ namespace Engine {
         }
 
         std::cout << "Display initialize.\n";
-        
-        shapes.push_back(new Triangle());
+
+        shapes.push_back(new RendererGL::Cube());
 
     }
 
     Display::~Display() {
 
-        for(Shape* shape : shapes)
+        for(RendererGL::Shape* shape : shapes)
             delete shape;
 
         glfwTerminate();
@@ -73,13 +72,13 @@ namespace Engine {
         glClear(GL_COLOR_BUFFER_BIT);
 
 
-        for(Shape* shape : shapes)
-            shape->draw();
+        for(RendererGL::Shape* shape : shapes)
+            shape->render();
     }
 
     void Display::update() {
 
-        for(Shape* shape : shapes)
+        for(RendererGL::Shape* shape : shapes)
             shape->update();
 
     }
@@ -91,8 +90,6 @@ namespace Engine {
             glfwSetWindowShouldClose(m_window, true);
 
 
-        for(Shape* shape : shapes)
-            shape->handle_input();
     }
 
     void Display::run() {

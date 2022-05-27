@@ -7,9 +7,12 @@
 
 struct GLFWwindow;
 
+namespace RendererGL {
+    struct Shape;
+}
+
 namespace Engine {
 
-    class Shape;
 
     class Display {
 
@@ -45,7 +48,7 @@ namespace Engine {
 
             GLFWwindow* m_window;
 
-            std::vector<Shape*> shapes;
+            std::vector<RendererGL::Shape*> shapes;
     };
 
 };
