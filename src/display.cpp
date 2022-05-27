@@ -19,7 +19,7 @@ namespace Engine {
             int height):width(width), height(height) {
 
 
-        RendererGL::Camera::initialize(Vector3(0.0f, 0.0f, 3.0f), width, height);
+        RendererGL::Camera::initialize(Vector3(0.0f, 0.0f, 0.0f), width, height);
 
         if(!init(title)) {
             std::cerr << "Could not intialize display.\n";

@@ -79,7 +79,7 @@ namespace RendererGL {
     void Cube::render() {
         m_shader->use();
         glm::mat4 model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(0.0f, 0.0f, 0.0f));
+        model = glm::translate(model, glm::vec3(-2.0f, 0.0f, 0.0f));
 
         m_shader->setMat4("view", Camera::get_instance()->get_view_matrix());
         m_shader->setMat4("model", model);
