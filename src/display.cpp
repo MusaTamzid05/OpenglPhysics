@@ -12,7 +12,9 @@
 
 
 namespace Engine {
-
+    bool Display::first_move = true;
+    float Display::last_x = 0.0f;
+    float Display::last_y = 0.0f;
 
     Display::Display(const std::string& title,
             int width,
@@ -30,6 +32,9 @@ namespace Engine {
 
         shapes.push_back(new RendererGL::Cube());
         std::cout.precision(10);
+
+        last_x = width / 2.0f;
+        last_y = height / 2.0f;
     }
 
     Display::~Display() {
@@ -62,6 +67,7 @@ namespace Engine {
         glfwMakeContextCurrent(m_window);
         glfwSetFramebufferSizeCallback(m_window, framebuffer_size_callback);
         glfwSetScrollCallback(m_window, scroll_callback);
+        glfwSetCursorPosCallback(m_window, mouse_callback);
 
 
         if(!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
@@ -141,6 +147,27 @@ namespace Engine {
 
     void Display::scroll_callback(GLFWwindow* window, double xoffset, double yoffset) {
         RendererGL::Camera::process_mouse_scroll(static_cast<float>(yoffset));
+    }
+
+    void Display::mouse_callback(GLFWwindow* window, double xpos_in, double ypos_in) {
+
+        float xpos = static_cast<float>(xpos_in);
+        float ypos = static_cast<float>(ypos_in);
+
+        if(first_move) {
+            last_x = xpos;
+            last_y = ypos;
+            first_move = false;
+        }
+
+        float xoffset = xpos - last_x;
+        float yoffset = last_y - ypos;
+
+        last_x = xpos;
+        last_y = ypos;
+        RendererGL::Camera::get_instance()->process_mouse_movement(xoffset, yoffset);
+
+
     }
 
 }

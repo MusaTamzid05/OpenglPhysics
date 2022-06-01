@@ -33,6 +33,7 @@ namespace Engine {
                     int height);
 
             static void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
+            static void mouse_callback(GLFWwindow* window, double xofset, double yoffset);
 
 
         private:
@@ -53,6 +54,10 @@ namespace Engine {
 
             GLFWwindow* m_window;
             std::vector<RendererGL::Shape*> shapes;
+            static bool first_move;
+
+            static float last_x;
+            static float last_y;
 
 
     };

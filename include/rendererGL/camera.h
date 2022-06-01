@@ -29,6 +29,7 @@ namespace RendererGL {
             glm::mat4 get_view_matrix();
             static void process_mouse_scroll(float offset);
 
+            static void process_mouse_movement(float xoffset, float yoffset, bool constrain_pitch = true);
             void update();
 
         private:
@@ -36,21 +37,20 @@ namespace RendererGL {
             Camera(const Vector3& position, int width, int height);
 
             Vector3 position;
-            glm::vec3 front;
-            glm::vec3 up;
-            glm::vec3 right;
-            glm::vec3 world_up;
+            static glm::vec3 front;
+            static glm::vec3 up;
+            static glm::vec3 right;
+            static glm::vec3 world_up;
 
-            void update_camera_vector();
+            static void update_camera_vector();
             void init_projection();
 
 
-            void process_mouse_movement(float xoffset, float yoffset, bool constrain_pitch = true);
 
-            float yaw;
-            float pitch;
+            static float yaw;
+            static float pitch;
             float speed;
-            float sensitivity;
+            static float sensitivity;
             static float zoom;
 
             static bool update_projection;

@@ -8,14 +8,20 @@
 namespace RendererGL {
     Camera* Camera::instance = nullptr;
     float Camera::zoom = 45.0f;
+    float Camera::sensitivity = 0.1f;
     bool Camera::update_projection = false;
+    float Camera::yaw = -180.0f;
+    float Camera::pitch = 0.0f;
+
+    glm::vec3 Camera::world_up = glm::vec3(0.0f, 0.0f, 0.0f);
+    glm::vec3 Camera::front = glm::vec3(0.0f, 0.0f, 0.0f);
+    glm::vec3 Camera::right = glm::vec3(0.0f, 0.0f, 0.0f);
+    glm::vec3 Camera::up = glm::vec3(0.0f, 0.0f, 0.0f);
+
 
     Camera::Camera(const Vector3& position, int width, int height):
         position(position) {
-            yaw = -90.0f;
-            pitch = 0.0f;
             speed = 2.5f;
-            sensitivity = 0.1f;
             world_up = glm::vec3(0.0f, 1.0f, 0.0f);
             update_camera_vector();
 
@@ -40,7 +46,7 @@ namespace RendererGL {
         glm::vec3 front_;
         front_.x = cos(glm::radians(yaw)) * cos(glm::radians(pitch));
         front_.y = sin(glm::radians(pitch));
-        front_.z = sin(glm::radians(pitch)) * cos(glm::radians(pitch));
+        front_.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
 
         front = glm::normalize(front_);
         right = glm::normalize(glm::cross(front, world_up));
@@ -92,7 +98,7 @@ namespace RendererGL {
         yoffset *= sensitivity;
 
         yaw += xoffset;
-        pitch += xoffset;
+        pitch += yoffset;
 
         if(constrain_pitch) {
             if(pitch > 89.0f)
