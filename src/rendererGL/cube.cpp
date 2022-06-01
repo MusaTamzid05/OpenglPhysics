@@ -70,19 +70,17 @@ namespace RendererGL {
     Cube::Cube() {
         m_mesh = new CubeMesh();
         m_shader = new Shader("../shaders/cube.vert", "../shaders/cube.frag");
-        m_shader->use();
-        m_shader->setMat4("projection", Camera::get_instance()->projection);
+        transform.set_position(Vector3(-2.0f, 0.0f, 0.0f));
 
     }
 
 
     void Cube::render() {
         m_shader->use();
-        glm::mat4 model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(-2.0f, 0.0f, 0.0f));
 
+        m_shader->setMat4("projection", Camera::get_instance()->projection);
         m_shader->setMat4("view", Camera::get_instance()->get_view_matrix());
-        m_shader->setMat4("model", model);
+        m_shader->setMat4("model", transform.get_model());
         glBindVertexArray(m_mesh->VAO);
         glDrawArrays(GL_TRIANGLES, 0, 36);
 

@@ -1,6 +1,8 @@
 #ifndef SHAPE_H
 #define SHAPE_H
 
+#include "rendererGL/transform.h"
+
 namespace RendererGL {
     class Shader;
 
@@ -12,6 +14,8 @@ namespace RendererGL {
         virtual void update() = 0;
 
         Shader* m_shader;
+
+        Transform transform;
 
 
     };

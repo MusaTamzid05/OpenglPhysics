@@ -1,11 +1,14 @@
 #include "rendererGL/camera.h"
 #include <cmath>
+#include <iostream>
 #include <stdexcept>
 #include <glm/gtc/matrix_transform.hpp>
 #include "rendererGL/time.h"
 
 namespace RendererGL {
     Camera* Camera::instance = nullptr;
+    float Camera::zoom = 45.0f;
+    bool Camera::update_projection = false;
 
     Camera::Camera(const Vector3& position, int width, int height):
         position(position) {
@@ -13,10 +16,13 @@ namespace RendererGL {
             pitch = 0.0f;
             speed = 2.5f;
             sensitivity = 0.1f;
-            zoom = 45.1f;
             world_up = glm::vec3(0.0f, 1.0f, 0.0f);
             update_camera_vector();
-            projection = glm::perspective(glm::radians(zoom), (float)width/ (float)height, 0.1f, 100.0f);
+
+            screen_width = width;
+            screen_height = height;
+            init_projection();
+
         }
 
     void Camera::initialize(const Vector3& position, int width, int height) {
@@ -71,10 +77,14 @@ namespace RendererGL {
     void Camera::process_mouse_scroll(float offset) {
         zoom -= (float)offset;
 
+
         if(zoom < 1.0f)
             zoom = 1.0f;
         if(zoom > 45.0f)
             zoom = 45.0f;
+
+        update_projection = true;
+
     }
 
     void Camera::process_mouse_movement(float xoffset, float yoffset, bool constrain_pitch) {
@@ -91,5 +101,17 @@ namespace RendererGL {
                 pitch = -89.0f;
         }
         update_camera_vector();
+    }
+
+    void Camera::update() {
+        if(update_projection) {
+            init_projection();
+            update_projection = false;
+        }
+    }
+
+    void Camera::init_projection() {
+        projection = glm::perspective(glm::radians(zoom), (float)screen_width/ (float)screen_height, 0.1f, 100.0f);
+
     }
 }

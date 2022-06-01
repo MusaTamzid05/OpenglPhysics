@@ -27,6 +27,9 @@ namespace RendererGL {
             static Camera* get_instance();
             void process_keyboard(CameraMovement direction);
             glm::mat4 get_view_matrix();
+            static void process_mouse_scroll(float offset);
+
+            void update();
 
         private:
 
@@ -39,18 +42,23 @@ namespace RendererGL {
             glm::vec3 world_up;
 
             void update_camera_vector();
+            void init_projection();
 
 
-            void process_mouse_scroll(float offset);
             void process_mouse_movement(float xoffset, float yoffset, bool constrain_pitch = true);
 
             float yaw;
             float pitch;
             float speed;
             float sensitivity;
-            float zoom;
+            static float zoom;
 
+            static bool update_projection;
             static Camera* instance;
+
+
+            int screen_width;
+            int screen_height;
 
 
     };

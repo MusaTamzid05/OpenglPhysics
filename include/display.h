@@ -32,6 +32,8 @@ namespace Engine {
                     int width,
                     int height);
 
+            static void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
+
 
         private:
 

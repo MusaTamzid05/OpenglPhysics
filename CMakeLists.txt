@@ -46,6 +46,7 @@ set(SOURCE_FILES
     src/rendererGL/shader.cpp
     src/rendererGL/time.cpp
     src/rendererGL/camera.cpp
+    src/rendererGL/transform.cpp
     )
 
 add_executable(gl_play  ${SOURCE_FILES})

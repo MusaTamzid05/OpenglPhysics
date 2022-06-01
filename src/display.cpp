@@ -61,6 +61,7 @@ namespace Engine {
 
         glfwMakeContextCurrent(m_window);
         glfwSetFramebufferSizeCallback(m_window, framebuffer_size_callback);
+        glfwSetScrollCallback(m_window, scroll_callback);
 
 
         if(!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
@@ -84,6 +85,8 @@ namespace Engine {
     void Display::update() {
 
         RendererGL::Time::get_instance()->update();
+        RendererGL::Camera::get_instance()->update();
+
         for(RendererGL::Shape* shape : shapes)
             shape->update();
 
@@ -136,5 +139,8 @@ namespace Engine {
         glViewport(0, 0, width, height);
     }
 
+    void Display::scroll_callback(GLFWwindow* window, double xoffset, double yoffset) {
+        RendererGL::Camera::process_mouse_scroll(static_cast<float>(yoffset));
+    }
 
 }
