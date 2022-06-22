@@ -94,19 +94,7 @@ namespace RendererGL {
     }
 
     void Camera::process_mouse_movement(float xoffset, float yoffset, bool constrain_pitch) {
-        xoffset *= sensitivity;
-        yoffset *= sensitivity;
-
-        yaw += xoffset;
-        pitch += yoffset;
-
-        if(constrain_pitch) {
-            if(pitch > 89.0f)
-                pitch = 89.0f;
-            if(pitch < -89.0f)
-                pitch = -89.0f;
-        }
-        update_camera_vector();
+        rotate(xoffset, yoffset, constrain_pitch);
     }
 
     void Camera::update() {
@@ -118,6 +106,25 @@ namespace RendererGL {
 
     void Camera::init_projection() {
         projection = glm::perspective(glm::radians(zoom), (float)screen_width/ (float)screen_height, 0.1f, 100.0f);
+
+    }
+
+    void Camera::rotate(float xoffset, float yoffset, bool constrain_pitch) {
+        std::cout << xoffset << " " << yoffset << "\n";
+        xoffset *= sensitivity;
+        yoffset *= sensitivity;
+
+
+        yaw += xoffset;
+        pitch += yoffset;
+
+        if(constrain_pitch) {
+            if(pitch > 89.0f)
+                pitch = 89.0f;
+            if(pitch < -89.0f)
+                pitch = -89.0f;
+        }
+        update_camera_vector();
 
     }
 }

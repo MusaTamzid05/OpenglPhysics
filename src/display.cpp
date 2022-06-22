@@ -152,6 +152,7 @@ namespace Engine {
 
     void Display::mouse_callback(GLFWwindow* window, double xpos_in, double ypos_in) {
 
+
         float xpos = static_cast<float>(xpos_in);
         float ypos = static_cast<float>(ypos_in);
 

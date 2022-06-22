@@ -32,6 +32,8 @@ namespace RendererGL {
             static void process_mouse_movement(float xoffset, float yoffset, bool constrain_pitch = true);
             void update();
 
+            static void rotate(float xoffset, float yoffset, bool constrain_pitch = false);
+
         private:
 
             Camera(const Vector3& position, int width, int height);
