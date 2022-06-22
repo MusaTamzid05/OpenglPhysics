@@ -23,6 +23,9 @@ namespace RendererGL {
 
 
     void Transform::set_scale(const Vector3& scale) {
-        // tobe implemented
+        model = glm::scale(
+                model,
+                glm::vec3(scale.x, scale.y, scale.z)
+                );
     }
 }
