@@ -12,6 +12,7 @@ namespace RendererGL {
     bool Camera::update_projection = false;
     float Camera::yaw = -180.0f;
     float Camera::pitch = 0.0f;
+    float Camera::keyboard_rotation_speed = 4.0f;
 
     glm::vec3 Camera::world_up = glm::vec3(0.0f, 0.0f, 0.0f);
     glm::vec3 Camera::front = glm::vec3(0.0f, 0.0f, 0.0f);
@@ -110,7 +111,6 @@ namespace RendererGL {
     }
 
     void Camera::rotate(float xoffset, float yoffset, bool constrain_pitch) {
-        std::cout << xoffset << " " << yoffset << "\n";
         xoffset *= sensitivity;
         yoffset *= sensitivity;
 

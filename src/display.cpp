@@ -117,6 +117,18 @@ namespace Engine {
 		if (glfwGetKey(m_window, GLFW_KEY_D) == GLFW_PRESS)
 			RendererGL::Camera::get_instance()->process_keyboard(RendererGL::CameraMovement::RIGHT);
 
+        // rotating ..
+        if (glfwGetKey(m_window, GLFW_KEY_KP_4) == GLFW_PRESS) {
+			RendererGL::Camera::get_instance()->rotate(-RendererGL::Camera::keyboard_rotation_speed, 0.0f, true);
+        } else if (glfwGetKey(m_window, GLFW_KEY_KP_6) == GLFW_PRESS) {
+			RendererGL::Camera::get_instance()->rotate(RendererGL::Camera::keyboard_rotation_speed, 0.0f, true);
+        } else if(glfwGetKey(m_window, GLFW_KEY_KP_8) == GLFW_PRESS) {
+			RendererGL::Camera::get_instance()->rotate(0.0f, RendererGL::Camera::keyboard_rotation_speed, true);
+        } else if(glfwGetKey(m_window, GLFW_KEY_KP_2) == GLFW_PRESS) {
+			RendererGL::Camera::get_instance()->rotate(0.0f, -RendererGL::Camera::keyboard_rotation_speed, true);
+
+        }
+
     }
 
     void Display::run() {

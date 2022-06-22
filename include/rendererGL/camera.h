@@ -34,6 +34,8 @@ namespace RendererGL {
 
             static void rotate(float xoffset, float yoffset, bool constrain_pitch = false);
 
+            static float keyboard_rotation_speed;
+
         private:
 
             Camera(const Vector3& position, int width, int height);
