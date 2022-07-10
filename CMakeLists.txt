@@ -37,8 +37,6 @@ set(SOURCE_FILES
     src/main.cpp
     src/display.cpp
     src/shader.cpp
-    src/shape.cpp
-    src/triangle.cpp
 
     src/utils.cpp
 
