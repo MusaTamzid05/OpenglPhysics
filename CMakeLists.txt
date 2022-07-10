@@ -40,6 +40,8 @@ set(SOURCE_FILES
     src/shape.cpp
     src/triangle.cpp
 
+    src/utils.cpp
+
 
     src/rendererGL/cube.cpp
     src/rendererGL/mesh.cpp

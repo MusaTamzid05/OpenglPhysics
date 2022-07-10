@@ -4,6 +4,9 @@
 #include <stdexcept>
 #include <glm/gtc/matrix_transform.hpp>
 #include "rendererGL/time.h"
+#include <fstream>
+#include <vector>
+#include "utils.h"
 
 namespace RendererGL {
     Camera* Camera::instance = nullptr;
@@ -32,7 +35,30 @@ namespace RendererGL {
 
         }
 
-    void Camera::initialize(const Vector3& position, int width, int height) {
+    void Camera::initialize(int width, int height) {
+        std::string path = "./camera.txt";
+        Vector3 position = Vector3(0.0f, 0.0f, 0.0f);
+
+        if(Utils::file_exists(path)) {
+            std::string line;
+            std::vector<std::string> line_data;
+            std::ifstream input_file(path);
+
+            while(std::getline(input_file, line)) {
+                line_data = Utils::split(line, ' ');
+                std::cout << line_data[0] << "\n";
+                if(line_data[0] == "position") {
+                    std::cout << "Loading " << line << "\n";
+                    position = Vector3
+                        (std::stof(line_data[1]), 
+                         std::stof(line_data[2]), 
+                         std::stof(line_data[3]));
+                }
+
+            }
+
+        }
+
         instance = new Camera(position, width, height);
     }
 
@@ -126,5 +152,26 @@ namespace RendererGL {
         }
         update_camera_vector();
 
+    }
+
+    void Camera::save() const {
+        std::string path = "./camera.txt";
+        //std::cout << " Front : x = " << front.x << " y = " << front.y << " z = " << front.z << "\n";
+        std::cout << "Position: x = " << position.x << " y = " << position.y << " z = " << position.z << "\n";
+        std::cout <<  "yaw " << yaw << " pitch " << pitch << "\n";
+
+        std::ofstream out_data;
+        out_data.open(path);
+
+        if(!out_data) {
+            std::cerr << "Could open " << path << " to save.\n";
+            return;
+        }
+
+        out_data << "position " << position.x << " " << position.y << " " << position.z << "\n";
+        out_data << "yaw " << yaw << "\n";
+        out_data << "pitch " << pitch << "\n";
+
+        out_data.close();
     }
 }

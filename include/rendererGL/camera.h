@@ -23,7 +23,7 @@ namespace RendererGL {
         public:
             virtual ~Camera() {}
             glm::mat4 projection;
-            static void initialize(const Vector3& position, int width, int height);
+            static void initialize(int width, int height);
             static Camera* get_instance();
             void process_keyboard(CameraMovement direction);
             glm::mat4 get_view_matrix();
@@ -35,6 +35,8 @@ namespace RendererGL {
             static void rotate(float xoffset, float yoffset, bool constrain_pitch = false);
 
             static float keyboard_rotation_speed;
+
+            void save() const;
 
         private:
 
