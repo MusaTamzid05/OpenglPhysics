@@ -71,13 +71,13 @@ namespace RendererGL {
         m_mesh = new CubeMesh();
         m_shader = new Shader("../shaders/cube.vert", "../shaders/cube.frag");
         transform.set_position(Vector3(-2.0f, 0.0f, 0.0f));
-
         set_color(Vector3(1.0f, 1.0f, 1.0f));
 
     }
 
 
     void Cube::render() {
+        Shape::render();
         m_shader->use();
 
         m_shader->setMat4("projection", Camera::get_instance()->projection);
@@ -89,6 +89,7 @@ namespace RendererGL {
     }
 
     void Cube::update() {
+        Shape::update();
 
     }
 }

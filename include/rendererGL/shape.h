@@ -3,6 +3,8 @@
 
 #include "rendererGL/transform.h"
 #include "vector3.h"
+#include "component.h"
+#include <vector>
 
 namespace RendererGL {
     class Shader;
@@ -11,8 +13,8 @@ namespace RendererGL {
         Shape() {}
         virtual ~Shape() {}
 
-        virtual void render() = 0;
-        virtual void update() = 0;
+        virtual void render();
+        virtual void update();
 
         void set_color(const Vector3& color);
 
@@ -20,7 +22,7 @@ namespace RendererGL {
         Transform transform;
 
         Vector3 color;
-
+        std::vector<Component*> m_components;
 
     };
 }
