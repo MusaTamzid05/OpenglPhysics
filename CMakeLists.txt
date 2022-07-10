@@ -43,6 +43,7 @@ set(SOURCE_FILES
     src/utils.cpp
 
 
+    src/rendererGL/shape.cpp
     src/rendererGL/cube.cpp
     src/rendererGL/mesh.cpp
     src/rendererGL/shader.cpp

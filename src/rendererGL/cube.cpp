@@ -72,7 +72,7 @@ namespace RendererGL {
         m_shader = new Shader("../shaders/cube.vert", "../shaders/cube.frag");
         transform.set_position(Vector3(-2.0f, 0.0f, 0.0f));
 
-        color = Vector3(1.0f, 1.0f, 1.0f);
+        set_color(Vector3(1.0f, 1.0f, 1.0f));
 
     }
 
@@ -83,7 +83,6 @@ namespace RendererGL {
         m_shader->setMat4("projection", Camera::get_instance()->projection);
         m_shader->setMat4("view", Camera::get_instance()->get_view_matrix());
         m_shader->setMat4("model", transform.get_model());
-        m_shader->setVec3("color", glm::vec3(color.x, color.y, color.z));
         glBindVertexArray(m_mesh->VAO);
         glDrawArrays(GL_TRIANGLES, 0, 36);
 

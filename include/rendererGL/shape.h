@@ -14,6 +14,8 @@ namespace RendererGL {
         virtual void render() = 0;
         virtual void update() = 0;
 
+        void set_color(const Vector3& color);
+
         Shader* m_shader;
         Transform transform;
 

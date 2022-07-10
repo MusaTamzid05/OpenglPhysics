@@ -31,8 +31,8 @@ namespace Engine {
         std::cout << "Display initialize.\n";
 
         shapes.push_back(new RendererGL::Cube());
-        //shapes[0]->transform.set_scale(Vector3(1.0f, 0.1f, 20.0f));
-        shapes[0]->color = Vector3(0.7f, 0.5f, 0.0f);
+        shapes[0]->transform.set_scale(Vector3(1.0f, 0.1f, 20.0f));
+        shapes[0]->set_color(Vector3(0.7f, 0.5f, 0.0f));
         std::cout.precision(10);
 
         last_x = width / 2.0f;
