@@ -2,6 +2,7 @@
 #define SHAPE_H
 
 #include "rendererGL/transform.h"
+#include "vector3.h"
 
 namespace RendererGL {
     class Shader;
@@ -14,8 +15,9 @@ namespace RendererGL {
         virtual void update() = 0;
 
         Shader* m_shader;
-
         Transform transform;
+
+        Vector3 color;
 
 
     };
