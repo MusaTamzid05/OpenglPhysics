@@ -47,13 +47,19 @@ namespace RendererGL {
             while(std::getline(input_file, line)) {
                 line_data = Utils::split(line, ' ');
                 std::cout << line_data[0] << "\n";
+
                 if(line_data[0] == "position") {
                     std::cout << "Loading " << line << "\n";
                     position = Vector3
                         (std::stof(line_data[1]), 
                          std::stof(line_data[2]), 
                          std::stof(line_data[3]));
-                }
+                } 
+                else if(line_data[0] == "yaw") 
+                    yaw =  std::stof(line_data[1]);
+
+                else if(line_data[0] == "pitch") 
+                    pitch =  std::stof(line_data[1]);
 
             }
 
