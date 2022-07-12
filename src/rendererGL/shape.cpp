@@ -1,5 +1,6 @@
 #include "rendererGL/shape.h"
 #include "rendererGL/shader.h"
+#include "component.h"
 
 namespace RendererGL {
 

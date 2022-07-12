@@ -37,9 +37,12 @@ set(SOURCE_FILES
     src/main.cpp
     src/display.cpp
     src/shader.cpp
+    src/vector3.cpp
+    src/component.cpp
 
     src/utils.cpp
 
+    src/physics/mover_component.cpp
 
     src/rendererGL/shape.cpp
     src/rendererGL/cube.cpp

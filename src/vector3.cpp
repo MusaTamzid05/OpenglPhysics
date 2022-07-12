@@ -37,6 +37,9 @@ Vector3 Vector3::operator*(const float value) const {
 }
 
 
+Vector3 Vector3::operator/(const float value) const {
+    return Vector3(x / value, y / value, z / value);
+}
 
 void Vector3::operator+=(const Vector3& v) {
     x += v.x;

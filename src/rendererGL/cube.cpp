@@ -5,6 +5,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include "rendererGL/shader.h"
 #include "rendererGL/camera.h"
+#include "physics/mover_component.h"
 
 namespace RendererGL {
 
@@ -90,6 +91,9 @@ namespace RendererGL {
 
     void Cube::update() {
         Shape::update();
+        Physics::MoveComponent* mover = (Physics::MoveComponent*) &m_components[0];
+        //std::cout << mover->position.x << " " << mover->position.y << " " << mover->position.z << "\n";
+        //transform.set_position(m_components[0]->position);
 
     }
 }

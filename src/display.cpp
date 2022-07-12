@@ -8,6 +8,7 @@
 #include "rendererGL/cube.h"
 #include "rendererGL/time.h"
 #include "rendererGL/camera.h"
+#include "physics/mover_component.h"
 #include <glm/gtc/matrix_transform.hpp>
 
 
@@ -31,8 +32,9 @@ namespace Engine {
         std::cout << "Display initialize.\n";
 
         shapes.push_back(new RendererGL::Cube());
-        shapes[0]->transform.set_scale(Vector3(1.0f, 0.1f, 20.0f));
+        //shapes[0]->transform.set_scale(Vector3(1.0f, 0.1f, 20.0f));
         shapes[0]->set_color(Vector3(0.7f, 0.5f, 0.0f));
+        shapes[0]->m_components.push_back(new Physics::MoveComponent(shapes[0]));
         std::cout.precision(10);
 
         last_x = width / 2.0f;
@@ -142,8 +144,8 @@ namespace Engine {
 
         while(!glfwWindowShouldClose(m_window)) {
             handle_input();
-            draw();
             update();
+            draw();
 
             glfwSwapBuffers(m_window);
             glfwPollEvents();

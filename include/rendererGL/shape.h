@@ -3,8 +3,9 @@
 
 #include "rendererGL/transform.h"
 #include "vector3.h"
-#include "component.h"
 #include <vector>
+
+struct Component;
 
 namespace RendererGL {
     class Shader;
