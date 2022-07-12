@@ -4,7 +4,6 @@
 namespace RendererGL {
 
     Transform::Transform() {
-        model = glm::mat4(1.0f);
     }
 
     Transform::~Transform(){
@@ -12,6 +11,7 @@ namespace RendererGL {
     }
 
     void Transform::set_position(const Vector3& position) {
+        model = glm::mat4(1.0f);
         this->position = position;
         model = glm::translate(model, glm::vec3(position.x, position.y, position.z));
     }

@@ -11,6 +11,7 @@
 #include "physics/mover_component.h"
 #include <glm/gtc/matrix_transform.hpp>
 
+#include "character_controller.h"
 
 namespace Engine {
     bool Display::first_move = true;
@@ -131,6 +132,18 @@ namespace Engine {
 			RendererGL::Camera::get_instance()->rotate(0.0f, -RendererGL::Camera::keyboard_rotation_speed, true);
 
         }
+
+        CharacterController::get_instance()->reset();
+
+        if(glfwGetKey(m_window, GLFW_KEY_UP)) {
+            CharacterController::get_instance()->forward = true;
+        }
+
+        if(glfwGetKey(m_window, GLFW_KEY_DOWN)) {
+            CharacterController::get_instance()->backward = true;
+        }
+
+
 
     }
 

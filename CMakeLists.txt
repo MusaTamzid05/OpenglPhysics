@@ -39,6 +39,7 @@ set(SOURCE_FILES
     src/shader.cpp
     src/vector3.cpp
     src/component.cpp
+    src/character_controller.cpp
 
     src/utils.cpp
 

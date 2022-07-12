@@ -2,6 +2,7 @@
 #include "rendererGL/time.h"
 #include <iostream>
 #include "rendererGL/shape.h"
+#include "character_controller.h"
 
 namespace Physics {
     MoveComponent::MoveComponent(RendererGL::Shape* shape, bool gravity_flag, float mass):
@@ -18,6 +19,12 @@ namespace Physics {
     }
 
     void MoveComponent::update() {
+        if(CharacterController::get_instance()->forward)
+            position.y += 0.1f;
+
+        std::cout << "position : x " << position.x << " , y " << position.y << ", z " << position.z << "\n";
+        shape->transform.set_position(position);
+
         /*
         if(gravity_flag) 
             apply_force(Vector3(0.0f, 0.0, 0.0f));
