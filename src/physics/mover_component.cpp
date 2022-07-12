@@ -19,15 +19,8 @@ namespace Physics {
     }
 
     void MoveComponent::update() {
-        if(CharacterController::get_instance()->forward)
-            position.y += 0.1f;
-
-        std::cout << "position : x " << position.x << " , y " << position.y << ", z " << position.z << "\n";
-        shape->transform.set_position(position);
-
-        /*
         if(gravity_flag) 
-            apply_force(Vector3(0.0f, 0.0, 0.0f));
+            apply_force(Vector3(0.0f, -9.8, 0.0f));
 
 
 
@@ -38,7 +31,6 @@ namespace Physics {
         //std::cout << "position : x " << position.x << " , y " << position.y << ", z " << position.z << "\n";
         std::cout << "velocity : x " << velocity.x << " , y " << velocity.y << ", z " << velocity.z << "\n";
         acceleration *= 0.0f;
-        */
 
     }
 
