@@ -12,7 +12,7 @@ namespace Physics {
 
         AABB(RendererGL::Transform* transform);
         void update_vectors();
-        static bool intersect(const AABB& a, const AABB& b);
+        static bool intersect(AABB& a, AABB& b);
 
         Vector3 min;
         Vector3 max;

@@ -16,7 +16,23 @@ namespace Physics {
     }
 
 
-    bool AABB::intersect(const AABB& a, const AABB& b) {
+    bool AABB::intersect(AABB& a, AABB& b) {
+
+        // for this to work, a must be min small size vector.
+        // This is not the case for aabb, but there is a
+        // problem in my implementation, this is by far
+        // the worst implemention ever but it will
+        // do for now.
+        if(a.min.magnitude() > b.min.magnitude()) {
+            AABB temp = a;
+            a = b;
+            b = temp;
+        }
+
+
+        //std::cout << "a " << a.min.magnitude() << " " << a.max.magnitude() << "\n";
+        //std::cout << "b " << b.min.magnitude() << " " << b.max.magnitude() << "\n";
+
         bool collision_x_min = a.min.x >= b.min.x  && a.min.x < b.max.x;
         bool collision_y_min = a.min.y >= b.min.y  && a.min.y < b.max.y;
         bool collision_z_min = a.min.z >= b.min.z  && a.min.z < b.max.z;
@@ -33,6 +49,7 @@ namespace Physics {
             return true;
 
         return false;
+
 
     }
 }
