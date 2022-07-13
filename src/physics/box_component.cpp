@@ -1,5 +1,6 @@
 #include "physics/box_component.h"
 #include "rendererGL/shape.h"
+#include <iostream>
 
 namespace Physics {
     BoxComponent::BoxComponent(RendererGL::Shape* shape):

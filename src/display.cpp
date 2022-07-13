@@ -37,11 +37,13 @@ namespace Engine {
         shapes[0]->set_color(Vector3(0.0f, 0.5f, 0.0f));
         shapes[0]->transform.set_position(Vector3(0.0f, 0.0f, 0.0f));
         shapes[0]->m_components.push_back(new Physics::MoveComponent(shapes[0]));
+        shapes[0]->m_components.push_back(new Physics::BoxComponent(shapes[0]));
 
         RendererGL::Cube* plane = new RendererGL::Cube();
         plane->transform.set_position(Vector3(0.0f, -10.0f, 0.0f));
         plane->transform.set_scale(Vector3(20.0f, 1.0f, 20.0f));
         plane->set_color(Vector3(0.7f, 0.5f, 0.3f));
+        plane->m_components.push_back(new Physics::BoxComponent(plane));
 
         shapes.push_back(plane);
 
@@ -110,6 +112,8 @@ namespace Engine {
 
         for(RendererGL::Shape* shape : shapes)
             shape->update();
+
+        update_collisions();
 
     }
 
@@ -229,6 +233,9 @@ namespace Engine {
 
                         Physics::BoxComponent* box1 =  (Physics::BoxComponent*) component;
                         Physics::BoxComponent* box2 =  (Physics::BoxComponent*) component2;
+
+                        //std::cout << "b1 min " << box1->aabb.min.x <<  " " << box1->aabb.min.y << " " << box1->aabb.min.y << "\n";
+                        //std::cout << "b1 max " << box1->aabb.max.x <<  " " << box1->aabb.max.y << " " << box1->aabb.max.y << "\n";
 
                         if(Physics::AABB::intersect(box1->aabb, box2->aabb)) { std::cout << "collision.\n"; }
 
