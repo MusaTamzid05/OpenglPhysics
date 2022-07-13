@@ -9,6 +9,7 @@
 #include "rendererGL/time.h"
 #include "rendererGL/camera.h"
 #include "physics/mover_component.h"
+#include "physics/box_component.h"
 #include <glm/gtc/matrix_transform.hpp>
 
 #include "character_controller.h"
@@ -33,13 +34,22 @@ namespace Engine {
         std::cout << "Display initialize.\n";
 
         shapes.push_back(new RendererGL::Cube());
-        //shapes[0]->transform.set_scale(Vector3(1.0f, 0.1f, 20.0f));
-        shapes[0]->set_color(Vector3(0.7f, 0.5f, 0.0f));
+        shapes[0]->set_color(Vector3(0.0f, 0.5f, 0.0f));
+        shapes[0]->transform.set_position(Vector3(0.0f, 0.0f, 0.0f));
         shapes[0]->m_components.push_back(new Physics::MoveComponent(shapes[0]));
+
+        RendererGL::Cube* plane = new RendererGL::Cube();
+        plane->transform.set_position(Vector3(0.0f, -10.0f, 0.0f));
+        plane->transform.set_scale(Vector3(20.0f, 1.0f, 20.0f));
+        plane->set_color(Vector3(0.7f, 0.5f, 0.3f));
+
+        shapes.push_back(plane);
+
         std::cout.precision(10);
 
         last_x = width / 2.0f;
         last_y = height / 2.0f;
+        glEnable(GL_DEPTH_TEST); 
     }
 
     Display::~Display() {
@@ -85,8 +95,8 @@ namespace Engine {
 
     void Display::draw() {
 
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-        glClear(GL_COLOR_BUFFER_BIT);
 
 
         for(RendererGL::Shape* shape : shapes)
@@ -197,6 +207,36 @@ namespace Engine {
         last_y = ypos;
         RendererGL::Camera::get_instance()->process_mouse_movement(xoffset, yoffset);
 
+
+    }
+
+    void Display::update_collisions() {
+        if(shapes.size() < 2)
+            return;
+
+        for(unsigned int i = 0; i < shapes.size(); i += 1) {
+            for(Component* component : shapes[i]->m_components) {
+                if(component->name != "box_component")
+                    continue;
+
+                for(unsigned int j = 0; j < shapes.size(); j += 1) {
+                    if(i == j)
+                        continue;
+
+                    for(Component* component2: shapes[j]->m_components) {
+                        if(component2->name != "box_component")
+                            continue;
+
+                        Physics::BoxComponent* box1 =  (Physics::BoxComponent*) component;
+                        Physics::BoxComponent* box2 =  (Physics::BoxComponent*) component2;
+
+                        if(Physics::AABB::intersect(box1->aabb, box2->aabb)) { std::cout << "collision.\n"; }
+
+                    }
+                }
+            }
+
+        }
 
     }
 

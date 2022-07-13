@@ -28,8 +28,6 @@ namespace Physics {
         position += (velocity * RendererGL::Time::get_instance()->delta_time);
         shape->transform.set_position(position);
 
-        //std::cout << "position : x " << position.x << " , y " << position.y << ", z " << position.z << "\n";
-        std::cout << "velocity : x " << velocity.x << " , y " << velocity.y << ", z " << velocity.z << "\n";
         acceleration *= 0.0f;
 
     }

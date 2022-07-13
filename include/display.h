@@ -49,6 +49,8 @@ namespace Engine {
             void update();
             void handle_input();
 
+            void update_collisions();
+
             int width;
             int height;
 

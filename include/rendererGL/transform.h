@@ -5,6 +5,7 @@
 #include "vector3.h"
 
 namespace RendererGL {
+
     class Transform {
         public:
             Transform();
@@ -27,6 +28,8 @@ namespace RendererGL {
             Vector3 rotation;
 
     };
+
+
 }
 
 #endif

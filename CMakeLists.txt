@@ -44,6 +44,7 @@ set(SOURCE_FILES
     src/utils.cpp
 
     src/physics/mover_component.cpp
+    src/physics/aabb.cpp
 
     src/rendererGL/shape.cpp
     src/rendererGL/cube.cpp

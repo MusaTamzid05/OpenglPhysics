@@ -3,6 +3,7 @@
 
 namespace RendererGL {
 
+
     Transform::Transform() {
     }
 
@@ -23,9 +24,15 @@ namespace RendererGL {
 
 
     void Transform::set_scale(const Vector3& scale) {
+        this->scale = scale;
         model = glm::scale(
                 model,
                 glm::vec3(scale.x, scale.y, scale.z)
                 );
     }
+
+
+
+
+
 }
