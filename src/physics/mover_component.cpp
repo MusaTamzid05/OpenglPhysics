@@ -6,7 +6,7 @@
 
 namespace Physics {
     MoveComponent::MoveComponent(RendererGL::Shape* shape, bool gravity_flag, float mass):
-        Component(shape),
+        Component("move_component",shape),
         gravity_flag(gravity_flag),
         mass(mass)
     {
