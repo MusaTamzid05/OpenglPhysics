@@ -237,7 +237,8 @@ namespace Engine {
                         //std::cout << "b1 min " << box1->aabb.min.x <<  " " << box1->aabb.min.y << " " << box1->aabb.min.y << "\n";
                         //std::cout << "b1 max " << box1->aabb.max.x <<  " " << box1->aabb.max.y << " " << box1->aabb.max.y << "\n";
 
-                        if(Physics::AABB::intersect(box1->aabb, box2->aabb)) { std::cout << "collision.\n"; }
+                        if(Physics::AABB::intersect(box1->aabb, box2->aabb)) 
+                            objs[i]->on_collisions(objs[j]);
 
                     }
                 }

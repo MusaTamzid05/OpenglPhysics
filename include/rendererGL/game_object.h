@@ -25,6 +25,11 @@ namespace RendererGL {
         Vector3 color;
         std::vector<Component*> m_components;
 
+        virtual void on_collisions(GameObject* other);
+
+        static int total_game_objects;
+        int id;
+
     };
 }
 
