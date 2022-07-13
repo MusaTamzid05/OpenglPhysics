@@ -1,7 +1,7 @@
 #ifndef CUBE_H
 #define CUBE_H
 
-#include "rendererGL/shape.h"
+#include "rendererGL/game_object.h"
 #include "rendererGL/mesh.h"
 
 namespace RendererGL {
@@ -12,7 +12,7 @@ namespace RendererGL {
 
     };
 
-    struct Cube : public Shape {
+    struct Cube : public GameObject {
         Cube();
         virtual ~Cube() {delete m_mesh;}
 

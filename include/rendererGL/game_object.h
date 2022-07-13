@@ -10,9 +10,9 @@ struct Component;
 namespace RendererGL {
     class Shader;
 
-    struct Shape {
-        Shape() {}
-        virtual ~Shape() {}
+    struct GameObject {
+        GameObject() {}
+        virtual ~GameObject() {}
 
         virtual void render();
         virtual void update();

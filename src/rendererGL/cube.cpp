@@ -78,7 +78,7 @@ namespace RendererGL {
 
 
     void Cube::render() {
-        Shape::render();
+        GameObject::render();
         m_shader->use();
 
         m_shader->setMat4("projection", Camera::get_instance()->projection);
@@ -90,7 +90,7 @@ namespace RendererGL {
     }
 
     void Cube::update() {
-        Shape::update();
+        GameObject::update();
         Physics::MoveComponent* mover = (Physics::MoveComponent*) &m_components[0];
         //std::cout << mover->position.x << " " << mover->position.y << " " << mover->position.z << "\n";
         //transform.set_position(m_components[0]->position);

@@ -4,16 +4,16 @@
 #include <string>
 
 namespace RendererGL {
-    struct Shape;
+    struct GameObject;
 }
 
 
 struct Component {
-    Component(const std::string& name, RendererGL::Shape* shape);
+    Component(const std::string& name, RendererGL::GameObject* obj);
     virtual void render() {}
     virtual void update() {}
 
-    RendererGL::Shape* shape;
+    RendererGL::GameObject* obj;
     std::string name;
 };
 

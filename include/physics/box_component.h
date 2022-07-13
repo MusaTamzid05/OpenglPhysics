@@ -6,13 +6,13 @@
 
 
 namespace RendererGL {
-    struct Shape;
+    struct GameObject;
 }
 
 namespace Physics {
 
     struct BoxComponent : public Component {
-        BoxComponent(RendererGL::Shape* shape);
+        BoxComponent(RendererGL::GameObject* obj);
 
         void render();
         void update();

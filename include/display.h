@@ -11,7 +11,7 @@
 struct GLFWwindow;
 
 namespace RendererGL {
-    struct Shape;
+    struct GameObject;
 }
 
 namespace Engine {
@@ -55,7 +55,7 @@ namespace Engine {
             int height;
 
             GLFWwindow* m_window;
-            std::vector<RendererGL::Shape*> shapes;
+            std::vector<RendererGL::GameObject*> objs;
             static bool first_move;
 
             static float last_x;

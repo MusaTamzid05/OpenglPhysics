@@ -5,14 +5,14 @@
 #include "vector3.h"
 
 namespace RendererGL {
-    struct Shape;
+    struct GameObject;
 }
 
 namespace Physics {
     struct  Shape;
 
     struct MoveComponent : public Component {
-        MoveComponent(RendererGL::Shape* shape, bool gravity_flag = true, float mass = 30.0f);
+        MoveComponent(RendererGL::GameObject* obj, bool gravity_flag = true, float mass = 30.0f);
 
         virtual void render();
         virtual void update();

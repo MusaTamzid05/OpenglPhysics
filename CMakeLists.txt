@@ -47,7 +47,7 @@ set(SOURCE_FILES
     src/physics/box_component.cpp
     src/physics/aabb.cpp
 
-    src/rendererGL/shape.cpp
+    src/rendererGL/game_object.cpp
     src/rendererGL/cube.cpp
     src/rendererGL/mesh.cpp
     src/rendererGL/shader.cpp

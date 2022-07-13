@@ -1,10 +1,10 @@
 #include "physics/box_component.h"
-#include "rendererGL/shape.h"
+#include "rendererGL/game_object.h"
 #include <iostream>
 
 namespace Physics {
-    BoxComponent::BoxComponent(RendererGL::Shape* shape):
-        Component("box_component", shape),aabb(&shape->transform) {
+    BoxComponent::BoxComponent(RendererGL::GameObject* obj):
+        Component("box_component", obj),aabb(&obj->transform) {
             aabb.update_vectors();
     }
 

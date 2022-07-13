@@ -33,11 +33,11 @@ namespace Engine {
 
         std::cout << "Display initialize.\n";
 
-        shapes.push_back(new RendererGL::Cube());
-        shapes[0]->set_color(Vector3(0.0f, 0.5f, 0.0f));
-        shapes[0]->transform.set_position(Vector3(0.0f, 0.0f, 0.0f));
-        shapes[0]->m_components.push_back(new Physics::MoveComponent(shapes[0]));
-        shapes[0]->m_components.push_back(new Physics::BoxComponent(shapes[0]));
+        objs.push_back(new RendererGL::Cube());
+        objs[0]->set_color(Vector3(0.0f, 0.5f, 0.0f));
+        objs[0]->transform.set_position(Vector3(0.0f, 0.0f, 0.0f));
+        objs[0]->m_components.push_back(new Physics::MoveComponent(objs[0]));
+        objs[0]->m_components.push_back(new Physics::BoxComponent(objs[0]));
 
         RendererGL::Cube* plane = new RendererGL::Cube();
         plane->transform.set_position(Vector3(0.0f, -10.0f, 0.0f));
@@ -45,7 +45,7 @@ namespace Engine {
         plane->set_color(Vector3(0.7f, 0.5f, 0.3f));
         plane->m_components.push_back(new Physics::BoxComponent(plane));
 
-        shapes.push_back(plane);
+        objs.push_back(plane);
 
         std::cout.precision(10);
 
@@ -56,8 +56,8 @@ namespace Engine {
 
     Display::~Display() {
 
-        for(RendererGL::Shape* shape : shapes)
-            delete shape;
+        for(RendererGL::GameObject* obj : objs)
+            delete obj;
 
         glfwTerminate();
     }
@@ -101,8 +101,8 @@ namespace Engine {
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 
 
-        for(RendererGL::Shape* shape : shapes)
-            shape->render();
+        for(RendererGL::GameObject * obj : objs)
+            obj->render();
     }
 
     void Display::update() {
@@ -110,8 +110,8 @@ namespace Engine {
         RendererGL::Time::get_instance()->update();
         RendererGL::Camera::get_instance()->update();
 
-        for(RendererGL::Shape* shape : shapes)
-            shape->update();
+        for(RendererGL::GameObject* obj : objs)
+            obj->update();
 
         update_collisions();
 
@@ -215,19 +215,19 @@ namespace Engine {
     }
 
     void Display::update_collisions() {
-        if(shapes.size() < 2)
+        if(objs.size() < 2)
             return;
 
-        for(unsigned int i = 0; i < shapes.size(); i += 1) {
-            for(Component* component : shapes[i]->m_components) {
+        for(unsigned int i = 0; i < objs.size(); i += 1) {
+            for(Component* component : objs[i]->m_components) {
                 if(component->name != "box_component")
                     continue;
 
-                for(unsigned int j = 0; j < shapes.size(); j += 1) {
+                for(unsigned int j = 0; j < objs.size(); j += 1) {
                     if(i == j)
                         continue;
 
-                    for(Component* component2: shapes[j]->m_components) {
+                    for(Component* component2: objs[j]->m_components) {
                         if(component2->name != "box_component")
                             continue;
 

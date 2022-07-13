@@ -1,16 +1,16 @@
 #include "physics/mover_component.h"
 #include "rendererGL/time.h"
 #include <iostream>
-#include "rendererGL/shape.h"
+#include "rendererGL/game_object.h"
 #include "character_controller.h"
 
 namespace Physics {
-    MoveComponent::MoveComponent(RendererGL::Shape* shape, bool gravity_flag, float mass):
-        Component("move_component",shape),
+    MoveComponent::MoveComponent(RendererGL::GameObject* obj, bool gravity_flag, float mass):
+        Component("move_component",obj),
         gravity_flag(gravity_flag),
         mass(mass)
     {
-        position = shape->transform.get_position();
+        position = obj->transform.get_position();
         velocity = Vector3();
         acceleration = Vector3();
     }
@@ -26,7 +26,7 @@ namespace Physics {
 
         velocity += acceleration;
         position += (velocity * RendererGL::Time::get_instance()->delta_time);
-        shape->transform.set_position(position);
+        obj->transform.set_position(position);
 
         acceleration *= 0.0f;
 
