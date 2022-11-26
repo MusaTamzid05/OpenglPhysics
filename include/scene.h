@@ -1,11 +1,13 @@
-#ifndef DISPLAY_H
-#define DISPLAY_H
+#ifndef SCENE_H
+#define SCENE_H
 
 #include <string>
 #include <vector>
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
+
+
 
 
 struct GLFWwindow;
@@ -17,15 +19,15 @@ namespace RendererGL {
 namespace Engine {
 
 
-    class Display {
+    class Scene {
 
         public:
-            Display(const std::string& title = "Window",
+            Scene(const std::string& title = "Window",
                     int width = 640,
                     int height = 480
                     );
 
-            virtual ~Display();
+            virtual ~Scene();
             void run();
 
             static void framebuffer_size_callback(GLFWwindow* window,
@@ -36,11 +38,11 @@ namespace Engine {
             static void mouse_callback(GLFWwindow* window, double xofset, double yoffset);
 
 
-        private:
+        protected:
 
 
-            Display(const Display&);
-            Display &operator=(const Display&);
+            Scene(const Scene&);
+            Scene &operator=(const Scene&);
 
             bool init(const std::string& title);
 

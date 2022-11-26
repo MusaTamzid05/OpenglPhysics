@@ -35,7 +35,7 @@ find_package(GLEW REQUIRED)
 
 set(SOURCE_FILES
     src/main.cpp
-    src/display.cpp
+    src/scene.cpp
     src/shader.cpp
     src/vector3.cpp
     src/component.cpp
@@ -54,6 +54,8 @@ set(SOURCE_FILES
     src/rendererGL/time.cpp
     src/rendererGL/camera.cpp
     src/rendererGL/transform.cpp
+
+    src/scenes/collider_test1_scene.cpp
     )
 
 add_executable(gl_play  ${SOURCE_FILES})
