@@ -20,7 +20,7 @@ namespace Engine {
             int height):width(width), height(height) {
 
 
-        RendererGL::Camera::initialize(width, height);
+        RendererGL::Camera::initialize(width, height, title);
 
         if(!init(title)) {
             std::cerr << "Could not intialize Scene.\n";
@@ -35,6 +35,8 @@ namespace Engine {
         last_x = width / 2.0f;
         last_y = height / 2.0f;
         glEnable(GL_DEPTH_TEST); 
+
+        this->title = title;
     }
 
     Scene::~Scene() {

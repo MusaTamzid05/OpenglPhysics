@@ -37,6 +37,8 @@ namespace Engine {
             static void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
             static void mouse_callback(GLFWwindow* window, double xofset, double yoffset);
 
+            std::string title;
+
 
         protected:
 
@@ -62,6 +64,7 @@ namespace Engine {
 
             static float last_x;
             static float last_y;
+
 
 
     };

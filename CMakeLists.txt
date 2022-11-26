@@ -6,7 +6,7 @@ set(LIB_SOURCE_FILES
     src/glad.cpp
     )
 
-
+set(CMAKE_BUILD_TYPE Debug)
 
 add_library(musa_gl_libs
     SHARED

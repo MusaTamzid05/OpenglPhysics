@@ -35,8 +35,8 @@ namespace RendererGL {
 
         }
 
-    void Camera::initialize(int width, int height) {
-        std::string path = "./camera.txt";
+    void Camera::initialize(int width, int height, const std::string& scene_name) {
+        std::string path = scene_name;
         Vector3 position = Vector3(0.0f, 0.0f, 0.0f);
 
         if(Utils::file_exists(path)) {
@@ -160,8 +160,7 @@ namespace RendererGL {
 
     }
 
-    void Camera::save() const {
-        std::string path = "./camera.txt";
+    void Camera::save(const std::string& path) const {
         //std::cout << " Front : x = " << front.x << " y = " << front.y << " z = " << front.z << "\n";
         std::cout << "Position: x = " << position.x << " y = " << position.y << " z = " << position.z << "\n";
         std::cout <<  "yaw " << yaw << " pitch " << pitch << "\n";

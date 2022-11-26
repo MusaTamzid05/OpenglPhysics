@@ -5,8 +5,8 @@
 
 int main(int argc, char** argv) {
 
-    Demo::ColliderTest1Scene scene("Display", 640, 480);
+    Demo::ColliderTest1Scene scene(640, 480);
     scene.run();
-    RendererGL::Camera::get_instance()->save();
+    RendererGL::Camera::get_instance()->save(scene.title);
     return 0;
 }

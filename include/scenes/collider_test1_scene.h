@@ -9,7 +9,6 @@ namespace Demo {
         public:
 
             ColliderTest1Scene( 
-                    const std::string& title = "Window",
                     int width = 640,
                     int height = 480
                     );

@@ -7,10 +7,9 @@
 namespace Demo {
 
     ColliderTest1Scene::ColliderTest1Scene( 
-            const std::string& title,
             int width,
             int height 
-            ):Scene(title, width, height) {
+            ):Scene("scenes/collider_test1",  width, height) {
 
         std::cout << "Scene initialize.\n";
 
