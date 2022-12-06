@@ -42,6 +42,7 @@ set(SOURCE_FILES
     src/character_controller.cpp
 
     src/utils.cpp
+    src/vertex.cpp
 
     src/physics/mover_component.cpp
     src/physics/box_component.cpp
@@ -55,7 +56,11 @@ set(SOURCE_FILES
     src/rendererGL/camera.cpp
     src/rendererGL/transform.cpp
 
+
+    src/rendererGL/sphere.cpp
+
     src/scenes/collider_test1_scene.cpp
+    src/scenes/sphere_scene.cpp
     )
 
 add_executable(gl_play  ${SOURCE_FILES})
