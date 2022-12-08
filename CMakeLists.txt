@@ -1,5 +1,6 @@
 cmake_minimum_required(VERSION 3.5 FATAL_ERROR)
 project(gl_play)
+find_package(Bullet REQUIRED)
 
 
 set(LIB_SOURCE_FILES
@@ -68,8 +69,9 @@ add_executable(gl_play  ${SOURCE_FILES})
 
 
 include_directories( ${OPENGL_INCLUDE_DIRS}  ${GLUT_INCLUDE_DIRS} ${GLEW_INCLUDE_DIRS}
+    ${BULLET_INCLUDE_DIRS}
     include
     )
 
 
-target_link_libraries(gl_play  musa_gl_libs )
+target_link_libraries(gl_play  musa_gl_libs ${BULLET_LIBRARIES})
