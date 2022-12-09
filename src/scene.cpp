@@ -120,6 +120,13 @@ namespace Engine {
 		if (glfwGetKey(m_window, GLFW_KEY_D) == GLFW_PRESS)
 			RendererGL::Camera::get_instance()->process_keyboard(RendererGL::CameraMovement::RIGHT);
 
+
+		if (glfwGetKey(m_window, GLFW_KEY_UP) == GLFW_PRESS)
+			RendererGL::Camera::get_instance()->process_keyboard(RendererGL::CameraMovement::UP);
+
+		if (glfwGetKey(m_window, GLFW_KEY_DOWN) == GLFW_PRESS)
+			RendererGL::Camera::get_instance()->process_keyboard(RendererGL::CameraMovement::DOWN);
+
         // rotating ..
         if (glfwGetKey(m_window, GLFW_KEY_KP_4) == GLFW_PRESS) {
 			RendererGL::Camera::get_instance()->rotate(-RendererGL::Camera::keyboard_rotation_speed, 0.0f, true);

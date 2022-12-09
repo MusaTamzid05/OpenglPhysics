@@ -18,9 +18,9 @@ namespace RendererGL {
     float Camera::keyboard_rotation_speed = 4.0f;
 
     glm::vec3 Camera::world_up = glm::vec3(0.0f, 0.0f, 0.0f);
-    glm::vec3 Camera::front = glm::vec3(0.0f, 0.0f, 0.0f);
+    glm::vec3 Camera::front = glm::vec3(0.0f, 0.0f, -1.0f);
     glm::vec3 Camera::right = glm::vec3(0.0f, 0.0f, 0.0f);
-    glm::vec3 Camera::up = glm::vec3(0.0f, 0.0f, 0.0f);
+    glm::vec3 Camera::up = glm::vec3(0.0f, 1.0f, 0.0f);
 
 
     Camera::Camera(const Vector3& position, int width, int height):
@@ -109,6 +109,12 @@ namespace RendererGL {
 
         if(direction == RIGHT)
             position_ += right * velocity;
+
+        if(direction == UP)
+            position_ += world_up * velocity;
+
+        if(direction == DOWN)
+            position_ -= world_up * velocity;
 
         position = Vector3(position_.x, position_.y, position_.z);
     }
