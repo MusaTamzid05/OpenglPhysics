@@ -56,12 +56,14 @@ set(SOURCE_FILES
     src/rendererGL/time.cpp
     src/rendererGL/camera.cpp
     src/rendererGL/transform.cpp
+    src/rendererGL/plane.cpp
 
 
     src/rendererGL/sphere.cpp
 
     src/scenes/collider_test1_scene.cpp
     src/scenes/sphere_scene.cpp
+    src/scenes/bullet_physics_demo_scene.cpp
     )
 
 add_executable(gl_play  ${SOURCE_FILES})

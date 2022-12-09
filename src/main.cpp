@@ -2,21 +2,23 @@
 #include "scene.h"
 #include "scenes/collider_test1_scene.h"
 #include "scenes/sphere_scene.h"
+#include "scenes/bullet_physics_demo_scene.h"
 #include "rendererGL/camera.h"
 
 #include <btBulletDynamicsCommon.h>
 
 void bullet_physics_test();
+void bullet_physics_scene1();
 
 int main(int argc, char** argv) {
-
     /*
-    Demo::SphereScene scene(640, 480);
+    Demo::ColliderTest1Scene scene(640, 480);
     scene.run();
     RendererGL::Camera::get_instance()->save(scene.title);
     */
 
-    bullet_physics_test();
+    bullet_physics_scene1();
+
     return 0;
 }
 
@@ -73,4 +75,12 @@ void bullet_physics_test() {
   delete collisionConfig;
   delete dispatcher;
   delete broadphase;
+}
+
+
+void bullet_physics_scene1() {
+    Demo::BulletPhysicsDemoScecne scene(640, 480);
+    scene.run();
+    RendererGL::Camera::get_instance()->save(scene.title);
+
 }
