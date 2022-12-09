@@ -4,6 +4,7 @@
 #include "rendererGL/transform.h"
 #include "vector3.h"
 #include <vector>
+#include "scene.h"
 
 struct Component;
 
@@ -11,13 +12,15 @@ namespace RendererGL {
     class Shader;
 
     struct GameObject {
-        GameObject() {}
+        GameObject(Engine::Scene* scene = nullptr):scene(scene) {}
         virtual ~GameObject() {}
 
         virtual void render();
         virtual void update();
 
         void set_color(const Vector3& color);
+
+        void set_transform(btTransform bt_transform);
 
         Shader* m_shader;
         Transform transform;
@@ -29,6 +32,8 @@ namespace RendererGL {
 
         static int total_game_objects;
         int id;
+
+        Engine::Scene* scene;
 
     };
 }

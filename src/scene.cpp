@@ -37,6 +37,14 @@ namespace Engine {
         glEnable(GL_DEPTH_TEST); 
 
         this->title = title;
+
+
+        collisionConfiguration = new btDefaultCollisionConfiguration();
+        dispatcher = new btCollisionDispatcher(collisionConfiguration);
+        overlappingPairCache = new btDbvtBroadphase();
+        solver = new btSequentialImpulseConstraintSolver();
+        dynamicsWorld = new btDiscreteDynamicsWorld(dispatcher, overlappingPairCache, solver, collisionConfiguration);
+
     }
 
     Scene::~Scene() {
@@ -92,7 +100,8 @@ namespace Engine {
 
     void Scene::update() {
 
-        RendererGL::Time::get_instance()->update();
+        RendererGL::Time::get_instance()->update(); // Do we need this anymore ?? using bullet physics now
+        dynamicsWorld->stepSimulation(1.0f / 60.0f);
         RendererGL::Camera::get_instance()->update();
 
         for(RendererGL::GameObject* obj : objs)

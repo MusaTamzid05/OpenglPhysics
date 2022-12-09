@@ -2,6 +2,10 @@
 #include "rendererGL/shader.h"
 #include "component.h"
 
+
+#include <glm/glm.hpp>
+#include <glm/gtc/quaternion.hpp>
+
 namespace RendererGL {
     int GameObject::total_game_objects = 0;
 
@@ -26,7 +30,17 @@ namespace RendererGL {
 
     }
 
+    void GameObject::set_transform(btTransform bt_transform) {
+        btVector3 position = bt_transform.getOrigin();
+        btQuaternion orientation = bt_transform.getRotation();
 
+        transform.set_position(Vector3(position.x(), position.y(), position.y()));
+
+        glm::quat glmOrientation(orientation.w(), orientation.x(), orientation.y(), orientation.z());
+        transform.set_rotation(glmOrientation);
+
+
+    }
 
     void GameObject::on_collisions(GameObject* other) {
         std::cout << "collider with " << other->id << "\n";

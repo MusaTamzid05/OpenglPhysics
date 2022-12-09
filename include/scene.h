@@ -8,6 +8,7 @@
 #include <GLFW/glfw3.h>
 
 
+#include <btBulletDynamicsCommon.h>
 
 
 struct GLFWwindow;
@@ -38,6 +39,7 @@ namespace Engine {
             static void mouse_callback(GLFWwindow* window, double xofset, double yoffset);
 
             std::string title;
+            btDiscreteDynamicsWorld* dynamicsWorld;
 
 
         protected:
@@ -64,6 +66,13 @@ namespace Engine {
 
             static float last_x;
             static float last_y;
+
+            // Physics
+
+            btDefaultCollisionConfiguration* collisionConfiguration;
+            btCollisionDispatcher* dispatcher;
+            btBroadphaseInterface* overlappingPairCache;
+            btSequentialImpulseConstraintSolver* solver;
 
 
 

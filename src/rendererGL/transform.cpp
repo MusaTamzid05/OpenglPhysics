@@ -1,5 +1,6 @@
 #include "rendererGL/transform.h"
 #include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/quaternion.hpp>
 
 namespace RendererGL {
 
@@ -19,10 +20,12 @@ namespace RendererGL {
 
 
     void Transform::set_rotation(const Vector3& rotation) {
-        // tobe implmeneted
     }
 
+    void Transform::set_rotation(const glm::quat orientation) {
+        model = glm::mat4_cast(orientation) * model;
 
+    }
     void Transform::set_scale(const Vector3& scale) {
         this->scale = scale;
         model = glm::scale(

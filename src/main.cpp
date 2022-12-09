@@ -18,7 +18,6 @@ int main(int argc, char** argv) {
     */
 
     bullet_physics_scene1();
-
     return 0;
 }
 

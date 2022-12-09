@@ -3,6 +3,8 @@
 
 #include "rendererGL/game_object.h"
 #include "rendererGL/mesh.h"
+#include "scene.h"
+#include <btBulletDynamicsCommon.h>
 
 namespace RendererGL {
 
@@ -13,13 +15,16 @@ namespace RendererGL {
     };
 
     struct Cube : public GameObject {
-        Cube();
+        Cube(Engine::Scene* scene = nullptr);
         virtual ~Cube() {delete m_mesh;}
 
         void render();
         void update();
 
         Mesh* m_mesh;
+        btRigidBody* boxRigidBody;
+
+
 
     };
 }

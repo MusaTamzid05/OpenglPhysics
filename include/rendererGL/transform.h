@@ -18,6 +18,7 @@ namespace RendererGL {
 
             void set_position(const Vector3& position);
             void set_rotation(const Vector3& rotation);
+            void set_rotation(const glm::quat orientation);
             void set_scale(const Vector3& scale);
 
         private:
