@@ -25,6 +25,7 @@ namespace RendererGL {
 
 
     void GameObject::update() {
+        transform.update();
         for(Component* component : m_components)
             component->update();
 
@@ -34,9 +35,10 @@ namespace RendererGL {
         btVector3 position = bt_transform.getOrigin();
         btQuaternion orientation = bt_transform.getRotation();
 
-        transform.set_position(Vector3(position.x(), position.y(), position.y()));
+        transform.set_position(Vector3(position.x(), position.y(), position.z()));
 
         glm::quat glmOrientation(orientation.w(), orientation.x(), orientation.y(), orientation.z());
+        std::cout << orientation.x() << " " <<  orientation.y() << " " << orientation.z() << " " << orientation.w() << "\n";
         transform.set_rotation(glmOrientation);
 
 

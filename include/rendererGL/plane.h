@@ -3,6 +3,7 @@
 
 #include "rendererGL/game_object.h"
 #include "rendererGL/mesh.h"
+#include <btBulletDynamicsCommon.h>
 
 namespace RendererGL {
 
@@ -13,13 +14,14 @@ namespace RendererGL {
     };
 
     struct Plane : public GameObject {
-        Plane();
+        Plane(Engine::Scene* scene = nullptr, const  Vector3 position = Vector3());
         virtual ~Plane() {delete m_mesh;}
 
         void render();
         void update();
 
         Mesh* m_mesh;
+        btRigidBody* boxRigidBody;
 
     };
 }

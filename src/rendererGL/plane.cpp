@@ -64,12 +64,26 @@ namespace RendererGL {
 
     }
 
-    Plane::Plane() {
+    Plane::Plane(Engine::Scene* scene, const  Vector3 position) {
         m_mesh = new PlaneMesh();
         m_shader = new Shader("../shaders/cube.vert", "../shaders/cube.frag");
-        transform.set_position(Vector3(-2.0f, 0.0f, 0.0f));
+        transform.set_position(position);
         transform.set_scale(Vector3(20.0f, 1.0f, 20.0f));
         //set_color(Vector3(1.0f, 1.0f, 1.0f));
+        
+
+        if(scene == nullptr)
+            return;
+
+        btCollisionShape* boxShape = new btBoxShape(btVector3(20, 1, 20.0f));
+        btDefaultMotionState* boxMotionState = new btDefaultMotionState(btTransform(btTransform(btQuaternion(0, 0, 0, 1), btVector3(position.x , position.y, position.z))));
+        btScalar mass = 0;
+        btVector3 boxInertia(0, 0 ,0);
+        boxShape->calculateLocalInertia(mass, boxInertia);
+
+        btRigidBody::btRigidBodyConstructionInfo boxRigidBodyCI(mass, boxMotionState, boxShape, boxInertia);
+        boxRigidBody = new btRigidBody(boxRigidBodyCI);
+        scene->dynamicsWorld->addRigidBody(boxRigidBody);
 
     }
 
@@ -88,9 +102,10 @@ namespace RendererGL {
 
     void Plane::update() {
         GameObject::update();
-        //Physics::MoveComponent* mover = (Physics::MoveComponent*) &m_components[0];
-        //std::cout << mover->position.x << " " << mover->position.y << " " << mover->position.z << "\n";
-        //transform.set_position(m_components[0]->position);
+
+        btTransform boxTransform;
+        boxRigidBody->getMotionState()->getWorldTransform(boxTransform);
+        set_transform(boxTransform);
 
     }
 }

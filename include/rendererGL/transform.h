@@ -3,6 +3,8 @@
 
 #include <glm/glm.hpp>
 #include "vector3.h"
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/quaternion.hpp>
 
 namespace RendererGL {
 
@@ -14,19 +16,20 @@ namespace RendererGL {
             glm::mat4 get_model() const { return model; }
             Vector3 get_position() const { return position; }
             Vector3 get_scale() const { return scale; }
-            Vector3 get_rotation() const { return rotation; }
 
             void set_position(const Vector3& position);
             void set_rotation(const Vector3& rotation);
             void set_rotation(const glm::quat orientation);
             void set_scale(const Vector3& scale);
 
+            void update();
+
         private:
             glm::mat4 model;
 
             Vector3 position;
             Vector3 scale;
-            Vector3 rotation;
+            glm::quat orientation;
 
     };
 

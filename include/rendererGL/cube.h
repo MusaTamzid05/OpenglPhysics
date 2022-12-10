@@ -15,7 +15,7 @@ namespace RendererGL {
     };
 
     struct Cube : public GameObject {
-        Cube(Engine::Scene* scene = nullptr);
+        Cube(Engine::Scene* scene = nullptr, const  Vector3 position = Vector3());
         virtual ~Cube() {delete m_mesh;}
 
         void render();

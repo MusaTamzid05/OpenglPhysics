@@ -12,12 +12,11 @@ namespace Demo {
 
         std::cout << "Scene initialize.\n";
 
-        RendererGL::Plane* plane =  new RendererGL::Plane();
+        RendererGL::Plane* plane =  new RendererGL::Plane(this, Vector3(0.0f, 0.0f, 0.0f));
         plane->set_color(Vector3(0.0f, 0.5f, 0.0f));
 
 
-        RendererGL::Cube* cube = new RendererGL::Cube(this);
-        cube->transform.set_position(Vector3(0.0f, 5.0f, 0.0));
+        RendererGL::Cube* cube = new RendererGL::Cube(this, Vector3(5.0f, 7.0f, 0.0));
         cube->set_color(Vector3(0.7f, 0.3f, 0.0f));
 
         objs.push_back(cube);

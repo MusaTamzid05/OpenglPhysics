@@ -68,23 +68,24 @@ namespace RendererGL {
 
     }
 
-    Cube::Cube(Engine::Scene* scene):GameObject(scene){
+    Cube::Cube(Engine::Scene* scene, const  Vector3 position):GameObject(scene){
         m_mesh = new CubeMesh();
         m_shader = new Shader("../shaders/cube.vert", "../shaders/cube.frag");
-        transform.set_position(Vector3(-2.0f, 0.0f, 0.0f));
         set_color(Vector3(1.0f, 1.0f, 1.0f));
+        transform.set_position(position);
 
         if(scene == nullptr)
             return;
 
         btCollisionShape* boxShape = new btBoxShape(btVector3(1, 1, 1));
-        btDefaultMotionState* boxMotionState = new btDefaultMotionState(btTransform(btTransform(btQuaternion(0, 0, 0, 1), btVector3(0, 10, 0))));
-        btScalar mass = 1;
+        btDefaultMotionState* boxMotionState = new btDefaultMotionState(btTransform(btTransform(btQuaternion(0, 0, 0, 1), btVector3(position.x , position.y, position.z))));
+        btScalar mass = 0.1f;
         btVector3 boxInertia(0, 0 ,0);
         boxShape->calculateLocalInertia(mass, boxInertia);
 
         btRigidBody::btRigidBodyConstructionInfo boxRigidBodyCI(mass, boxMotionState, boxShape, boxInertia);
         boxRigidBody = new btRigidBody(boxRigidBodyCI);
+        boxRigidBody->setRestitution(1.0f);
         scene->dynamicsWorld->addRigidBody(boxRigidBody);
 
 
@@ -106,9 +107,9 @@ namespace RendererGL {
     void Cube::update() {
         GameObject::update();
 
-    btTransform boxTransform;
-    boxRigidBody->getMotionState()->getWorldTransform(boxTransform);
-    set_transform(boxTransform);
+        btTransform boxTransform;
+        boxRigidBody->getMotionState()->getWorldTransform(boxTransform);
+        set_transform(boxTransform);
 
 
     }
